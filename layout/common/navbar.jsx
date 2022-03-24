@@ -29,14 +29,16 @@ class Navbar extends Component {
         } = this.props;
 
         let navbarLogo = '';
+        let navbarLogoText = '';
         if (logo) {
             if (logo.text) {
-                navbarLogo = logo.text;
-            } else {
+                navbarLogoText = <p>{logo.text}</p>;
+            }
+            if (logo.img) {
                 navbarLogo = <img src={logoUrl} alt={siteTitle} height="28" />;
             }
         } else {
-            navbarLogo = siteTitle;
+            navbarLogoText = siteTitle;
         }
 
         return <nav class="navbar navbar-main">
@@ -44,6 +46,7 @@ class Navbar extends Component {
                 <div class="navbar-brand justify-content-center">
                     <a class="navbar-item navbar-logo" href={siteUrl}>
                         {navbarLogo}
+                        {navbarLogoText}
                     </a>
                 </div>
                 <div class="navbar-menu">
@@ -106,7 +109,7 @@ module.exports = cacheComponent(Navbar, 'common.navbar', props => {
 
     return {
         logo,
-        logoUrl: url_for(logo),
+        logoUrl: url_for(logo.img),
         siteUrl: url_for('/'),
         siteTitle: title,
         menu,
