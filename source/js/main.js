@@ -46,12 +46,11 @@
     function toggleFold(codeBlock, isFolded) {
         const $toggle = $(codeBlock).find('.fold i');
         !isFolded ? $(codeBlock).removeClass('folded') : $(codeBlock).addClass('folded');
-        !isFolded ? $toggle.removeClass('fa-angle-right') : $toggle.removeClass('fa-angle-down');
-        !isFolded ? $toggle.addClass('fa-angle-down') : $toggle.addClass('fa-angle-right');
+        !isFolded ? $toggle.text("keyboard_arrow_down") : $toggle.text("keyboard_arrow_right");
     }
 
     function createFoldButton(fold) {
-        return '<span class="fold">' + (fold === 'unfolded' ? '<i class="fas fa-angle-down"></i>' : '<i class="fas fa-angle-right"></i>') + '</span>';
+        return '<span class="fold">' + (fold === 'unfolded' ? '<i class="material-icons">keyboard_arrow_down</i>' : '<i class="material-icons">keyboard_arrow_right</i>') + '</span>';
     }
 
     $('figure.highlight table').wrap('<div class="highlight-body">');
@@ -89,7 +88,7 @@
         if (typeof ClipboardJS !== 'undefined' && clipboard) {
             $('figure.highlight').each(function() {
                 const id = 'code-' + Date.now() + (Math.random() * 1000 | 0);
-                const button = '<a href="javascript:;" class="copy" title="Copy" data-clipboard-target="#' + id + ' .code"><i class="fas fa-copy"></i></a>';
+                const button = '<a href="javascript:;" class="copy" title="Copy" data-clipboard-target="#' + id + ' .code"><i class="material-icons">content_copy</i></a>';
                 $(this).attr('id', id);
                 $(this).find('figcaption div.level-right').append(button);
             });
@@ -116,6 +115,27 @@
                 toggleFold($code.eq(0), !$code.hasClass('folded'));
             });
         }
+
+        $('figure.highlight').each(function () {
+            let span = $(this).find('figcaption').find('span')[1];
+            if (span && span.innerText.indexOf(">") > -1) {
+                const item = span.innerText.split('>')[1].split(',');
+                const start = parseInt(item[0]);
+                const mark = parseInt(item[1]);
+                const lines = $(this).find('.highlight-body .code span.line');
+                $(this).find('.highlight-body .gutter').find('span').each(function () {
+                    let num = parseInt($(this).text()) + start - 1;
+                    $(this).text(num);
+                    if (mark && num === mark) {
+                        $(lines[mark - start]).addClass('marked');
+                    }
+                })
+                $(span).text($(span).text().substring(0, $(span).text().indexOf('>')).trim());
+            }
+            if ($(span).text().length == 0) {
+                $(this).find('figcaption').remove();
+            }
+        })
     }
 
     const $toc = $('#toc');

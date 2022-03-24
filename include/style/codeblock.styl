@@ -1,7 +1,8 @@
 /* ---------------------------------
  *          Code Highlight
  * --------------------------------- */
-$codeblock-caption-bg ?= rgba(200, 200, 200, .15)
+$codeblock-caption-bg ?= rgba(0, 0, 0, .1)
+$codeblock-marked-bg ?= rgba(255, 235, 59, 0.5)
 
 figure.highlight
     padding: 0
@@ -9,13 +10,24 @@ figure.highlight
     position: relative
     margin: 1em 0 1em !important
     border-radius: $radius
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .05), 0 0 1px rgba(0, 0, 0, .05)
 
     &.folded
         .highlight-body
             height: 0
-    
+
     .copy
         opacity: .7
+        padding: 0 !important
+        display: flex
+        align-items: center
+        i
+            font-size: 1.2rem
+            line-height: 1.5
+            color: rgba(0, 0, 0, .2)
+            transition: color .25s,opacity .25s
+            &:hover
+                color: rgba(0, 0, 0, .6)
 
     pre, table tr:hover
         color: inherit
@@ -40,14 +52,12 @@ figure.highlight
         .line, code .hljs
             line-height: 1.5rem
 
-    figcaption, .gutter
-        background: $codeblock-caption-bg
-
     figcaption
         margin: 0 !important
-        padding: .3em 0em .3em .75em
+        padding: 0.8em 1em
         font-style: normal
         font-size: .8em
+        background: $codeblock-caption-bg
 
         *
             color: inherit
@@ -57,13 +67,18 @@ figure.highlight
             font-family: $family-code
 
         .level-left *:not(:last-child)
-            margin-right: .5em
+            margin-right: 1em
 
         .level-right *:not(:first-child)
             margin-left: .5em
 
         .fold
             cursor: pointer
+            display: flex
+            align-items: center
+            i
+                font-size: 1.2rem
+                line-height: 1.5
 
         &.level
             overflow: auto
@@ -74,9 +89,14 @@ figure.highlight
 
     .highlight-body
         overflow: auto
+        .code
+            .marked
+                background-color: $codeblock-marked-bg
 
     .gutter
         text-align: right
+        border-right: 0.0625rem solid rgba(0, 0, 0, .1)
+        color: rgba(0, 0, 0, .25)
 
     .tag, .title, .number, .section
         display: inherit

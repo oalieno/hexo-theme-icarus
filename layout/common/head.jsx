@@ -162,6 +162,8 @@ module.exports = class extends Component {
                 updated={page.updated}
                 images={structuredImages} /> : null}
 
+            <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet" />
+
             {canonical_url ? <link rel="canonical" href={canonical_url} /> : null}
             {rss ? <link rel="alternate" href={url_for(rss)} title={config.title} type="application/atom+xml" /> : null}
             {favicon ? <link rel="icon" href={url_for(favicon)} /> : null}
