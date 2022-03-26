@@ -17,7 +17,6 @@ class Navbar extends Component {
     render() {
         const {
             logo,
-            logoUrl,
             siteUrl,
             siteTitle,
             menu,
@@ -35,10 +34,10 @@ class Navbar extends Component {
                 navbarLogoText = <p>{logo.text}</p>;
             }
             if (logo.img) {
-                navbarLogo = <img src={logoUrl} alt={siteTitle} height="28" />;
+                navbarLogo = <img src={logo.img} alt={siteTitle} height="28" />;
             }
         } else {
-            navbarLogoText = siteTitle;
+            navbarLogoText = <p>siteTitle</p>;
         }
 
         return <nav class="navbar navbar-main">
@@ -107,9 +106,16 @@ module.exports = cacheComponent(Navbar, 'common.navbar', props => {
         });
     }
 
+    const logoObj = {}
+    if (typeof logo === 'string') {
+        logoObj.img = url_for(logo)
+    } else {
+        logoObj.text = logo.text
+        logoObj.img = url_for(logo.img)
+    }
+
     return {
-        logo,
-        logoUrl: url_for(logo.img),
+        logo: logoObj,
         siteUrl: url_for('/'),
         siteTitle: title,
         menu,
