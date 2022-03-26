@@ -90,8 +90,12 @@ figure.highlight
     .highlight-body
         overflow: auto
         .code
+            width: 100%
             .marked
                 background-color: $codeblock-marked-bg
+                display: block
+            .marked + br
+                display: none
 
     .gutter
         text-align: right
