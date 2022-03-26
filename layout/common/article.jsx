@@ -32,7 +32,7 @@ module.exports = class extends Component {
 
         return <Fragment>
             {/* Main content */}
-            <div class="card">
+            <div class={!index || page.excerpt ? "card" : "card card-readmore"}>
                 {/* Thumbnail */}
                 {cover ? <div class="card-image">
                     {index ? <a href={url_for(page.link || page.path)} class="image is-7by3">
@@ -99,7 +99,9 @@ module.exports = class extends Component {
                         })}
                     </div> : null}
                     {/* "Read more" button */}
-                    {index && page.excerpt ? <a class="article-more button is-small is-size-7" href={`${url_for(page.link || page.path)}#more`}>{__('article.more')}</a> : null}
+                    {index ? <div class="article-more-container">
+                        <a class="article-more button is-small is-size-7" href={`${url_for(page.link || page.path)}#more`}>{__('article.more')}</a>
+                    </div> : null}
                     {/* Share button */}
                     {!index ? <Share config={config} page={page} helper={helper} /> : null}
                 </article>
