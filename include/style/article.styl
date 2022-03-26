@@ -4,7 +4,6 @@
 $article-font-size ?= 1.1rem
 
 .card-readmore
-    max-height: 400px
     overflow: hidden
     position: relative
     &:after
@@ -23,6 +22,8 @@ $article-font-size ?= 1.1rem
         height: 60px
         z-index: 10
         background-image: linear-gradient(to bottom, hsla(0, 100%, 100%, 0.9), hsla(0, 100%, 100%, 1))
+    article
+        max-height: 400px
 
 article
     &.media
