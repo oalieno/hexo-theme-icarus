@@ -53,7 +53,7 @@ module.exports = class extends Component {
 
         const language = page.lang || page.language || config.language;
         const fontCssUrl = {
-            default: fontcdn('Ubuntu:wght@400;600&family=Source+Code+Pro', 'css2'),
+            default: fontcdn('Noto+Sans+TC:wght@100;300;400;500;700;900&family=Material+Icons&family=Source+Code+Pro', 'css2'),
             cyberpunk: fontcdn('Oxanium:wght@300;400;600&family=Roboto+Mono', 'css2')
         };
 
@@ -161,8 +161,6 @@ module.exports = class extends Component {
                 date={page.date}
                 updated={page.updated}
                 images={structuredImages} /> : null}
-
-            <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet" />
 
             {canonical_url ? <link rel="canonical" href={canonical_url} /> : null}
             {rss ? <link rel="alternate" href={url_for(rss)} title={config.title} type="application/atom+xml" /> : null}
