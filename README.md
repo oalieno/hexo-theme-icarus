@@ -7,6 +7,7 @@ A customized version of [icarus](https://github.com/ppoffice/hexo-theme-icarus) 
 - [Better code block](#better-code-block)
 - [Admonition](#admonition)
 - [Blurring readmore](#blurring-readmore)
+- [Compact article meta](#compact-article-meta)
 - [Lazy loading images](#lazy-loading-images)
 
 ## Better code block
@@ -51,6 +52,12 @@ main()
 If you do not set an excerpt, a blurring effect of readmore will be applied.
 
 ![](/screenshots/readmore.png)
+
+## Compact article meta
+
+More compact article meta, no more long long text.
+
+![](/screenshots/meta.png)
 
 ## Lazy loading images
 
