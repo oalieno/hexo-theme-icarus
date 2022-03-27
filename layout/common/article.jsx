@@ -43,11 +43,12 @@ module.exports = class extends Component {
                 </div> : null}
                 <article class={`card-content article${'direction' in page ? ' ' + page.direction : ''}`} role="article">
                     {/* Metadata */}
-                    {page.layout !== 'page' ? <div class="article-meta is-size-7 is-uppercase level is-mobile">
+                    {page.layout !== 'page' ? <div class="article-meta is-size-7 level is-mobile">
                         <div class="level-left">
                             {/* Creation Date */}
+                            <i class="material-icons">calendar_month</i>
                             {page.date && <span class="level-item" dangerouslySetInnerHTML={{
-                                __html: _p('article.created_at', `<time dateTime="${date_xml(page.date)}" title="${new Date(page.date).toLocaleString()}">${date(page.date)}</time>`)
+                                __html: `<time dateTime="${date_xml(page.date)}" title="${new Date(page.date).toLocaleString()}">${date(page.date)}</time>`
                             }}></span>}
                             {/* Last Update Date */}
                             {shouldShowUpdated && <span class="level-item" dangerouslySetInnerHTML={{
@@ -55,7 +56,22 @@ module.exports = class extends Component {
                             }}></span>}
                             {/* author */}
                             {page.author ? <span class="level-item"> {page.author} </span> : null}
+                            {/* Read time */}
+                            <i class="material-icons">schedule</i>
+                            {article && article.readtime && article.readtime === true ? <span class="level-item">
+                                {(() => {
+                                    const words = getWordCount(page._content);
+                                    const time = moment.duration((words / 150.0) * 60, 'seconds');
+                                    return `${time.locale(index ? indexLaunguage : language).humanize()}`;
+                                })()}
+                            </span> : null}
+                            {/* Visitor counter */}
+                            {!index && plugins && plugins.busuanzi === true ? <i class="material-icons">visibility</i> : null}
+                            {!index && plugins && plugins.busuanzi === true ? <span class="level-item" id="busuanzi_container_page_pv" dangerouslySetInnerHTML={{
+                                __html: _p('plugin.visit_count', '<span id="busuanzi_value_page_pv">0</span>')
+                            }}></span> : null}
                             {/* Categories */}
+                            <i class="material-icons">category</i>
                             {page.categories && page.categories.length ? <span class="level-item">
                                 {(() => {
                                     const categories = [];
@@ -68,18 +84,6 @@ module.exports = class extends Component {
                                     return categories;
                                 })()}
                             </span> : null}
-                            {/* Read time */}
-                            {article && article.readtime && article.readtime === true ? <span class="level-item">
-                                {(() => {
-                                    const words = getWordCount(page._content);
-                                    const time = moment.duration((words / 150.0) * 60, 'seconds');
-                                    return `${_p('article.read_time', time.locale(index ? indexLaunguage : language).humanize())} (${_p('article.word_count', words)})`;
-                                })()}
-                            </span> : null}
-                            {/* Visitor counter */}
-                            {!index && plugins && plugins.busuanzi === true ? <span class="level-item" id="busuanzi_container_page_pv" dangerouslySetInnerHTML={{
-                                __html: _p('plugin.visit_count', '<span id="busuanzi_value_page_pv">0</span>')
-                            }}></span> : null}
                         </div>
                     </div> : null}
                     {/* Title */}
