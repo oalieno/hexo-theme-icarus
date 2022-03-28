@@ -134,6 +134,8 @@
                 $(span).text($(span).text().substring(0, $(span).text().indexOf('>')).trim());
             }
             if ($(span).text().length == 0) {
+                const a = $(this).find('a');
+                $(this).find('.highlight-body').prepend(a);
                 $(this).find('figcaption').remove();
             }
         })

@@ -10,7 +10,7 @@ figure.highlight
     position: relative
     margin: 1em 0 1em !important
     border-radius: $radius
-    box-shadow: 0 4px 10px rgba(0, 0, 0, .05), 0 0 1px rgba(0, 0, 0, .05)
+    box-shadow: 2px 3px 8px rgba(0, 0, 0, .05), 0 0 1px rgba(0, 0, 0, .15)
 
     &.folded
         .highlight-body
@@ -96,6 +96,10 @@ figure.highlight
                 display: block
             .marked + br
                 display: none
+        .copy
+            position: absolute
+            right: 8px
+            top: 6px
 
     .gutter
         text-align: right
