@@ -102,7 +102,7 @@ module.exports = class extends Component {
                         })}
                     </div> : null}
                     {/* "Read more" button */}
-                    {index ? <div class="article-more-container">
+                    {index && !page.short ? <div class="article-more-container">
                         <a class="article-more button is-small is-size-7" href={`${url_for(page.link || page.path)}#more`}>{__('article.more')}</a>
                     </div> : null}
                     {/* Share button */}
