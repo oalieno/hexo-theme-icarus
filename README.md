@@ -1,6 +1,6 @@
 # IcarusX
 
-![](https://img.shields.io/badge/version-5.0.0--rc.1-blue?style=for-the-badge)
+![](https://img.shields.io/badge/version-5.0.1-blue?style=for-the-badge)
 
 A customized version of [icarus](https://github.com/ppoffice/hexo-theme-icarus) by oalieno.
 
